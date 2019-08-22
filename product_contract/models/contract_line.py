@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 
 class AccountAnalyticInvoiceLine(models.Model):
-    _inherit = 'account.analytic.invoice.line'
+    _inherit = 'contract.line'
 
     sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line",

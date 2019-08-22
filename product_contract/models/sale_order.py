@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         """ If we have a contract in the order, set it up """
-        contract_env = self.env['account.analytic.account']
+        contract_env = self.env['contract.contract']
         for rec in self.filtered('is_contract'):
             line_to_create_contract = rec.order_line.filtered(
                 lambda r: not r.contract_id and r.product_id.is_contract
@@ -63,6 +63,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_show_contracts(self):
         self.ensure_one()
+        return # TODO: implement
         action = self.env.ref(
             "contract.action_account_analytic_sale_overdue_all"
         ).read()[0]

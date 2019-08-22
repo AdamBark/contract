@@ -14,7 +14,7 @@
     'website': 'https://github.com/oca/contract',
     'depends': [
         'product',
-        'contract_sale',
+        # 'contract_sale',
     ],
     'data': [
         'views/product_template.xml',

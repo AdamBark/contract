@@ -14,10 +14,10 @@ class SaleOrderLine(models.Model):
         string='Is a contract', related="product_id.is_contract"
     )
     contract_id = fields.Many2one(
-        comodel_name='account.analytic.account', string='Contract', copy=False
+        comodel_name='contract.contract', string='Contract', copy=False
     )
     contract_template_id = fields.Many2one(
-        comodel_name='account.analytic.contract',
+        comodel_name='contract.template',
         string='Contract Template',
         related='product_id.product_tmpl_id.contract_template_id',
         readonly=True,
@@ -64,7 +64,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _prepare_contract_line_values(self, contract):
         self.ensure_one()
-        contract_line_env = self.env['account.analytic.invoice.line']
+        contract_line_env = self.env['contract.line']
         return {
             'sequence': self.sequence,
             'product_id': self.product_id.id,
@@ -92,8 +92,8 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def create_contract_line(self, contract):
-        contract_line_env = self.env['account.analytic.invoice.line']
-        contract_line = self.env['account.analytic.invoice.line']
+        contract_line_env = self.env['contract.line']
+        contract_line = self.env['contract.line']
         for rec in self:
             contract_line |= contract_line_env.create(
                 rec._prepare_contract_line_values(contract)
