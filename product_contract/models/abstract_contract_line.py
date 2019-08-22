@@ -4,8 +4,8 @@
 from odoo import api, models, fields
 
 
-class AccountAbstractAnalyticContractLine(models.AbstractModel):
-    _inherit = 'contract.abstract.line'
+class ContractAbstractContractLine(models.AbstractModel):
+    _inherit = 'contract.abstract.contract.line'
 
     @api.onchange('product_id')
     def onchange_product(self):

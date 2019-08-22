@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class AccountAnalyticInvoiceLine(models.Model):
+class ContractLine(models.Model):
     _inherit = 'contract.line'
 
     sale_order_line_id = fields.Many2one(
@@ -17,7 +17,7 @@ class AccountAnalyticInvoiceLine(models.Model):
 
     @api.multi
     def _prepare_invoice_line(self, invoice_id):
-        res = super(AccountAnalyticInvoiceLine, self)._prepare_invoice_line(
+        res = super(ContractLine, self)._prepare_invoice_line(
             invoice_id
         )
         if self.sale_order_line_id:
