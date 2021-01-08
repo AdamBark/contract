@@ -1,4 +1,5 @@
 # Copyright 2018 Tecnativa - Carlos Dauden
+# Copyright 2021 initos Gmbh
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.addons.contract.tests.test_contract import TestContractBase
