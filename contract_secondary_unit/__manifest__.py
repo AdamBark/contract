@@ -13,7 +13,6 @@
     "auto_install": False,
     "depends": ["contract", "product_secondary_unit"],
     "data": [
-        "views/product_views.xml",
-        "views/contract_views.xml",
+        "views/abstract_contract_line.xml",
     ],
 }

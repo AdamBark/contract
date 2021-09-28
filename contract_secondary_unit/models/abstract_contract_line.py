@@ -1,11 +1,12 @@
 # Copyright 2021 Akretion - Kevin Roche
+# Copyright 2021 Akretion - Raphaël Reverdy
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
 
-class ContractLine(models.Model):
-    _inherit = ["contract.line", "product.secondary.unit.mixin"]
-    _name = "contract.line"
+class AbstractContractLine(models.AbstractModel):
+    _inherit = ["contract.abstract.contract.line", "product.secondary.unit.mixin"]
+    _name = "contract.abstract.contract.line"
     _secondary_unit_fields = {
         "qty_field": "quantity",
         "uom_field": "uom_id",

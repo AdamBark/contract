@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="contract_abstract_contract_line_form_view" model="ir.ui.view">
+        <field
+            name="inherit_id"
+            ref="contract.contract_abstract_contract_line_form_view"
+        />
+        <field name="model">contract.abstract.contract.line</field>
+        <field name="groups_id" eval="[(4, ref('uom.group_uom'))]" />
+        <field name="arch" type="xml">
+            <field name="automatic_price" position="before">
+                <label for="secondary_uom_qty" />
+                <div class="o_row">
+                    <field name="secondary_uom_qty" class="oe_inline" />
+                    <field
+                        name="secondary_uom_id"
+                        class="oe_inline"
+                        groups="uom.group_uom"
+                    />
+                </div>
+            </field>
+             <field name="price_unit" position="after">
+                <field name="secondary_uom_unit_price" />
+             </field>
+        </field>
+    </record>
+
+    <record id="contract_contract_form_view" model="ir.ui.view">
+        <field name="name">Contract Secondary Unit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_form_view" />
+        <field name="groups_id" eval="[(4, ref('uom.group_uom'))]" />
+        <field name="arch" type="xml">
+        <xpath
+                expr="//field[@name='contract_line_fixed_ids']/tree//field[@name='quantity']"
+                position="before"
+            >
+                <field name="secondary_uom_qty" optional="show" />
+                <field
+                    name="secondary_uom_id"
+                    domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
+                    options="{'no_create': True}"
+                    optional="show"
+                />
+                <field name="secondary_uom_unit_price" optional="hide" />
+
+            </xpath>
+            <xpath
+                expr="//field[@name='contract_line_ids']/tree//field[@name='quantity']"
+                position="before"
+            >
+                <field name="secondary_uom_qty" optional="show" />
+                <field
+                    name="secondary_uom_id"
+                    domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
+                    options="{'no_create': True}"
+                    optional="show"
+                />
+                <field name="secondary_uom_unit_price" optional="hide" />
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
