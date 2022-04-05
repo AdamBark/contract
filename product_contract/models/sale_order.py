@@ -127,7 +127,7 @@ class SaleOrder(models.Model):
 
     def action_show_contracts(self):
         self.ensure_one()
-        action = self.env.ref("contract.action_customer_contract").read()[0]
+        action = self.env.ref("contract.action_customer_contract").sudo().read()[0]
         contracts = (
             self.env["contract.line"]
             .search([("sale_order_line_id", "in", self.order_line.ids)])
